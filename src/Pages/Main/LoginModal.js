@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import Modal from '../../Components/modal';
 import Button from '../../Components/button';
@@ -34,18 +34,17 @@ function LoginModal({ show, toggle, onLogin }) {
     e.preventDefault();
     try {
       onLogin({ userName: userName.value, password: password.value });
-      userName.setValue('');
-      password.setValue('');
       toggle();
     } catch (e) {
       alert('아이디 비밀번호가 틀립니다');
     }
   };
-  const onClose = () => {
+
+  useEffect(() => {
     userName.setValue('');
     password.setValue('');
-    toggle();
-  }
+  },[toggle])
+
   return (
     <Modal Small show={show} toggle={toggle}>
       <FormWrap onSubmit={onSubmitForm}>
@@ -70,7 +69,7 @@ function LoginModal({ show, toggle, onLogin }) {
           <Button type="submit">
             로그인
           </Button>
-          <Button type="button" onClick={onClose}>
+          <Button type="button" onClick={toggle}>
             닫기
           </Button>
         </Footer>
