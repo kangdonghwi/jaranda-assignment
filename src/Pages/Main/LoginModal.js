@@ -27,7 +27,8 @@ const Footer = styled.div`
   display: flex;
   justify-content: space-around;
 `;
-function LoginModal({ show, toggle, onLogin }) {
+
+const LoginModal = ({ show, toggle, onLogin }) => {
   const userName = useInput('');
   const password = useInput('');
   const onSubmitForm = e => {
@@ -43,7 +44,7 @@ function LoginModal({ show, toggle, onLogin }) {
   useEffect(() => {
     userName.setValue('');
     password.setValue('');
-  },[toggle])
+  }, [toggle]);
 
   return (
     <Modal Small show={show} toggle={toggle}>
@@ -66,9 +67,7 @@ function LoginModal({ show, toggle, onLogin }) {
           />
         </Body>
         <Footer>
-          <Button type="submit">
-            로그인
-          </Button>
+          <Button type="submit">로그인</Button>
           <Button type="button" onClick={toggle}>
             닫기
           </Button>
@@ -76,5 +75,5 @@ function LoginModal({ show, toggle, onLogin }) {
       </FormWrap>
     </Modal>
   );
-}
+};
 export default LoginModal;
